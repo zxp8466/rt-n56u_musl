@@ -1,0 +1,8 @@
+# Ignore build directory
+/src/binutils-*
+/src/musl-*
+/src/gcc-*
+/src/linux-*
+/src/kernel-headers-*
+/src/include
+/toolchain-*
