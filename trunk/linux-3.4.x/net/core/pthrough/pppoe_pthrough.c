@@ -122,6 +122,11 @@ int proc_pppoe_write(struct file *file, const char __user *buffer, unsigned long
 	int cur_count=0, pt_enable_last;
 	struct net_device *dev_lan, *dev_wan;
 
+	/* FIXME: proc_file_write is calling twice with NULL buffer. 
+		Does proc_file_write missing ppos update? */
+ 	if ((count == 0) || (buffer == NULL) )
+		return 0;
+
 	pt_enable_last = pppoe_pt_enable;
 
 	/* we expect that buffer contain format of "landev_name,wandev_name" */
