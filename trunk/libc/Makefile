@@ -13,17 +13,29 @@ include $(ARCH_CONFIG)
 
 DESTDIR=$(ROOTDIR)/stage
 
-LIBC_DIR = uClibc-0.9.33.2
+LIBC_DIR=musl-1.1.16
 
-all:
-	$(MAKE) -j$(HOST_NCPU) -C $(LIBC_DIR) && \
-	$(MAKE) -C $(LIBC_DIR) utils || \
+all: config_test
+	$(MAKE) -j$(HOST_NCPU) -C $(LIBC_DIR) all && \
+	$(MAKE) -C $(LIBC_DIR) install || \
 	exit $$? ; \
 	if [ ! -f $(DESTDIR)/.installed_$(LIBC_DIR) ] ; then \
-		$(MAKE) -C $(LIBC_DIR) install_runtime && \
-		$(MAKE) -C $(LIBC_DIR) install_utils && \
 		touch $(DESTDIR)/.installed_$(LIBC_DIR) ; \
 	fi
+
+	
+config_test:
+	( if [ -f ./config_done ]; then \
+		echo "the same configuration" ; \
+	else \
+		( cd $(LIBC_DIR) ; \
+		./configure \
+		--prefix=/ \
+		--enable-debug \
+		--enable-optimize \
+		--disable-gcc-wrapper ; ) \
+	fi )
+
 
 %_only:
 	$(MAKE) -C $(@:_only=)
@@ -35,31 +47,17 @@ all:
 	$(MAKE) -C $(@:_clean=) clean
 
 romfs:
-	$(STRIP) $(DESTDIR)/bin/ldd ; \
-	$(STRIP) $(DESTDIR)/sbin/ldconfig ; \
-	cp -fP $(DESTDIR)/bin/ldd $(ROMFSDIR)/bin ; \
-	cp -fP $(DESTDIR)/lib/libcrypt.so* $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/libcrypt-*.so $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/libdl*.so* $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/libm*.so* $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/libnsl*.so* $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/libpthread*.so* $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/libresolv*.so* $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/librt*.so* $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/libutil*.so* $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/libuClibc*.so* $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/libc.so.0 $(ROMFSDIR)/lib ; \
-	cp -fP $(DESTDIR)/lib/ld-uClibc*.so* $(ROMFSDIR)/lib ; \
-	chmod +x $(ROMFSDIR)/lib/libuClibc*.so ; \
-	chmod +x $(ROMFSDIR)/lib/libpthread*.so ; \
-	chmod +x $(ROMFSDIR)/lib/libm*.so ; \
-	chmod +x $(ROMFSDIR)/lib/libcrypt*.so ; \
-	chmod +x $(ROMFSDIR)/lib/libdl*.so ; \
-	chmod +x $(ROMFSDIR)/lib/libresolv*.so ; \
-	chmod +x $(ROMFSDIR)/lib/libutil*.so ; \
-	chmod +x $(ROMFSDIR)/lib/librt*.so ; \
-	chmod +x $(ROMFSDIR)/lib/libnsl*.so
+	cp -fP $(DESTDIR)/lib/libc.so $(ROMFSDIR)/lib ; \
+	$(STRIP) $(ROMFSDIR)/lib/libc.so ; \
+	cp -fP $(CONFIG_CROSS_COMPILER_ROOT)/lib/libgcc_s.so.1 $(ROMFSDIR)/lib ; \
+	$(STRIP) $(ROMFSDIR)/lib/libgcc_s.so.1 ; \
+	ln -sf ../lib/libc.so $(ROMFSDIR)/bin/ldd ; \
+	cp -fP $(DESTDIR)/lib/ld-musl*.so* $(ROMFSDIR)/lib ; \
+	chmod +x $(ROMFSDIR)/lib/libc.so ; \
+	chmod +x $(ROMFSDIR)/bin/ldd ; \
+	chmod +x $(ROMFSDIR)/lib/ld-musl*.so* 
 
 clean:
 	rm -f $(DESTDIR)/.installed_$(LIBC_DIR)
 	$(MAKE) -C $(LIBC_DIR) distclean
+	rm -f config_done
