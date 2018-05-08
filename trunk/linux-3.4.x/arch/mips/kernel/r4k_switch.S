@@ -23,6 +23,9 @@
 
 #include <asm/asmmacro.h>
 
+/* preprocessor replaces the fp in ".set fp=64" with $30 otherwise */
+#undef fp
+
 /*
  * Offset to the current process status flags, the first 32 bytes of the
  * stack are not used.
@@ -118,7 +121,7 @@
  * Save a thread's fp context.
  */
 LEAF(_save_fp)
-#ifdef CONFIG_64BIT
+#if defined(CONFIG_64BIT) || defined(CONFIG_CPU_MIPS32_R2)
 	mfc0	t0, CP0_STATUS
 #endif
 	fpu_save_double a0 t0 t1		# clobbers t1
@@ -129,7 +132,7 @@ LEAF(_save_fp)
  * Restore a thread's fp context.
  */
 LEAF(_restore_fp)
-#ifdef CONFIG_64BIT
+#if defined(CONFIG_64BIT) || defined(CONFIG_CPU_MIPS32_R2)
 	mfc0	t0, CP0_STATUS
 #endif
 	fpu_restore_double a0 t0 t1		# clobbers t1
@@ -145,6 +148,9 @@ LEAF(_restore_fp)
  */
 
 #define FPU_DEFAULT  0x00000000
+
+	.set push
+	SET_HARDFLOAT
 
 LEAF(_init_fpu)
 #ifdef CONFIG_MIPS_MT_SMTC
@@ -223,8 +229,50 @@ LEAF(_init_fpu)
 	mtc1	t1, $f29
 	mtc1	t1, $f30
 	mtc1	t1, $f31
+
+#ifdef CONFIG_CPU_MIPS32_R2
+	.set    push
+	.set    mips32r2
+	.set	fp=64
+	sll     t0, t0, 5			# is Status.FR set?
+	bgez    t0, 1f				# no: skip setting upper 32b
+
+	mthc1   t1, $f0
+	mthc1   t1, $f1
+	mthc1   t1, $f2
+	mthc1   t1, $f3
+	mthc1   t1, $f4
+	mthc1   t1, $f5
+	mthc1   t1, $f6
+	mthc1   t1, $f7
+	mthc1   t1, $f8
+	mthc1   t1, $f9
+	mthc1   t1, $f10
+	mthc1   t1, $f11
+	mthc1   t1, $f12
+	mthc1   t1, $f13
+	mthc1   t1, $f14
+	mthc1   t1, $f15
+	mthc1   t1, $f16
+	mthc1   t1, $f17
+	mthc1   t1, $f18
+	mthc1   t1, $f19
+	mthc1   t1, $f20
+	mthc1   t1, $f21
+	mthc1   t1, $f22
+	mthc1   t1, $f23
+	mthc1   t1, $f24
+	mthc1   t1, $f25
+	mthc1   t1, $f26
+	mthc1   t1, $f27
+	mthc1   t1, $f28
+	mthc1   t1, $f29
+	mthc1   t1, $f30
+	mthc1   t1, $f31
+1:	.set    pop
+#endif /* CONFIG_CPU_MIPS32_R2 */
 #else
-	.set	mips3
+	.set	arch=r4000
 	dmtc1	t1, $f0
 	dmtc1	t1, $f2
 	dmtc1	t1, $f4
@@ -244,3 +292,5 @@ LEAF(_init_fpu)
 #endif
 	jr	ra
 	END(_init_fpu)
+
+	.set pop	/* SET_HARDFLOAT */
