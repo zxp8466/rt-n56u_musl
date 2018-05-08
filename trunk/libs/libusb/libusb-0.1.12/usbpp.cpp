@@ -110,7 +110,7 @@ namespace USB {
     }
   }
 
-  std::list<Device *> Busses::match(u_int8_t class_code)
+  std::list<Device *> Busses::match(uint8_t class_code)
   {
     std::list<Device *> match_list;
     USB::Bus *bus;
@@ -176,7 +176,7 @@ namespace USB {
     return m_fileName;
   }
 
-  int Device::string(std::string &buf, int index, u_int16_t langID)
+  int Device::string(std::string &buf, int index, uint16_t langID)
   {
     int retval;
     char tmpBuff[256];
@@ -230,32 +230,32 @@ namespace USB {
   }
 #endif /* USE_UNTESTED_LIBUSBPP_METHODS */
 
-  u_int16_t Device::idVendor(void)
+  uint16_t Device::idVendor(void)
   {
     return m_descriptor.idVendor;
   }
 
-  u_int16_t Device::idProduct(void)
+  uint16_t Device::idProduct(void)
   {
     return m_descriptor.idProduct;
   }
 
-  u_int16_t Device::idRevision(void)
+  uint16_t Device::idRevision(void)
   {
     return m_descriptor.bcdDevice;
   }
 
-  u_int8_t Device::devClass(void)
+  uint8_t Device::devClass(void)
   {
     return m_descriptor.bDeviceClass;
   }
 
-  u_int8_t Device::devSubClass(void)
+  uint8_t Device::devSubClass(void)
   {
     return m_descriptor.bDeviceSubClass;
   }
 
-  u_int8_t Device::devProtocol(void)
+  uint8_t Device::devProtocol(void)
   {
     return m_descriptor.bDeviceProtocol;
   }
@@ -295,7 +295,7 @@ namespace USB {
     m_SerialNumber = serialnumber;
   }
 
-  u_int8_t Device::numConfigurations(void)
+  uint8_t Device::numConfigurations(void)
   {
     return m_descriptor.bNumConfigurations;
   }
@@ -329,14 +329,14 @@ namespace USB {
     return back();
   }
 
-  int Device::controlTransfer(u_int8_t requestType, u_int8_t request,
-			       u_int16_t value, u_int16_t index, u_int16_t length,
+  int Device::controlTransfer(uint8_t requestType, uint8_t request,
+			       uint16_t value, uint16_t index, uint16_t length,
 			       unsigned char *payload, int timeout)
   {
     return usb_control_msg(m_handle, requestType, request, value, index, (char *)payload, length, timeout);
   }
 
-  u_int8_t Configuration::numInterfaces(void)
+  uint8_t Configuration::numInterfaces(void)
   {
     return m_NumInterfaces;
   }
@@ -415,12 +415,12 @@ namespace USB {
   }
 #endif /* USE_UNTESTED_LIBUSBPP_METHODS */
 
-  u_int8_t Interface::numAltSettings(void)
+  uint8_t Interface::numAltSettings(void)
   {
     return m_numAltSettings;
   }
 
-  void Interface::setNumAltSettings(u_int8_t num_altsetting)
+  void Interface::setNumAltSettings(uint8_t num_altsetting)
   {
     m_numAltSettings = num_altsetting;
   }
@@ -497,7 +497,7 @@ namespace USB {
     return back();
   }
 
-  u_int8_t AltSetting::numEndpoints(void)
+  uint8_t AltSetting::numEndpoints(void)
   {
     return m_NumEndpoints;
   }
@@ -562,18 +562,18 @@ namespace USB {
     printf("      bSynchAddress:    %d\n", m_SynchAddress);
   }
 
-  DeviceID::DeviceID(u_int16_t vendor, u_int16_t product)
+  DeviceID::DeviceID(uint16_t vendor, uint16_t product)
   {
     m_vendor = vendor;
     m_product = product;
   }
 
-  u_int16_t DeviceID::vendor(void)
+  uint16_t DeviceID::vendor(void)
   {
     return m_vendor;
   }
 
-  u_int16_t DeviceID::product(void)
+  uint16_t DeviceID::product(void)
   {
     return m_product;
   }

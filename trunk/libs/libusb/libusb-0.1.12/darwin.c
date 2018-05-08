@@ -387,9 +387,9 @@ static int get_endpoints (struct darwin_dev_handle *device)
 {
   io_return_t ret;
 
-  u_int8_t numep, direction, number;
-  u_int8_t dont_care1, dont_care3;
-  u_int16_t dont_care2;
+  uint8_t numep, direction, number;
+  uint8_t dont_care1, dont_care3;
+  uint16_t dont_care2;
 
   int i;
 
@@ -475,7 +475,7 @@ static int claim_interface (usb_dev_handle *dev, int interface)
   IOObjectRelease(interface_iterator);
 
   if (!usbInterface) {
-    u_int8_t nConfig;			     /* Index of configuration to use */
+    uint8_t nConfig;			     /* Index of configuration to use */
     IOUSBConfigurationDescriptorPtr configDesc; /* to describe which configuration to select */
     /* Only a composite class device with no vendor-specific driver will
        be configured. Otherwise, we need to do it ourselves, or there
@@ -789,11 +789,11 @@ static int usb_bulk_transfer (usb_dev_handle *dev, int ep, char *bytes, int size
 
   struct rw_complete_arg rw_arg;
 
-  u_int8_t  transferType;
+  uint8_t  transferType;
 
   /* None of the values below are used in libusb for bulk transfers */
-  u_int8_t  direction, number, interval;
-  u_int16_t maxPacketSize;
+  uint8_t  direction, number, interval;
+  uint16_t maxPacketSize;
 
   if (!dev)
     USB_ERROR_STR ( -ENXIO, "usb_bulk_transfer: Called with NULL device" );
@@ -1036,7 +1036,7 @@ int usb_os_find_devices(struct usb_bus *bus, struct usb_device **devices)
 
   usb_device_t **device;
 
-  u_int16_t address;
+  uint16_t address;
   UInt32 location;
   UInt32 bus_loc = bus->location;
 

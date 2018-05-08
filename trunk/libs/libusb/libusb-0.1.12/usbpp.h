@@ -99,14 +99,14 @@ namespace USB {
 	private:
 		void setDescriptor(struct usb_endpoint_descriptor);
 		void setParent(Device *parent);
-		u_int8_t  m_Length;
-		u_int8_t  m_DescriptorType;
-		u_int8_t  m_EndpointAddress;
-		u_int8_t  m_Attributes;
-		u_int16_t m_MaxPacketSize;
-		u_int8_t  m_Interval;
-		u_int8_t  m_Refresh;
-		u_int8_t  m_SynchAddress;
+		uint8_t  m_Length;
+		uint8_t  m_DescriptorType;
+		uint8_t  m_EndpointAddress;
+		uint8_t  m_Attributes;
+		uint16_t m_MaxPacketSize;
+		uint8_t  m_Interval;
+		uint8_t  m_Refresh;
+		uint8_t  m_SynchAddress;
 		Device    *m_parent;
 	};
 
@@ -118,7 +118,7 @@ namespace USB {
 		friend class Busses;
 	public:
 		AltSetting() {};
-		u_int8_t numEndpoints(void);
+		uint8_t numEndpoints(void);
 
 		/**
 		 * \brief AltSetting descriptor information output
@@ -140,15 +140,15 @@ namespace USB {
 		void setDescriptor(struct usb_interface_descriptor);
 		/* we don't use a normal usb_interface_descriptor */
 		/* because that would bring in the endpoint list */
-		u_int8_t m_Length;
-		u_int8_t m_DescriptorType;
-		u_int8_t m_InterfaceNumber;
-		u_int8_t m_AlternateSetting;
-		u_int8_t m_NumEndpoints;
-		u_int8_t m_InterfaceClass;
-		u_int8_t m_InterfaceSubClass;
-		u_int8_t m_InterfaceProtocol;
-		u_int8_t m_Interface;
+		uint8_t m_Length;
+		uint8_t m_DescriptorType;
+		uint8_t m_InterfaceNumber;
+		uint8_t m_AlternateSetting;
+		uint8_t m_NumEndpoints;
+		uint8_t m_InterfaceClass;
+		uint8_t m_InterfaceSubClass;
+		uint8_t m_InterfaceProtocol;
+		uint8_t m_Interface;
 	};
 
 	/**
@@ -226,7 +226,7 @@ namespace USB {
 		 * This is a simple accessor method that specifies the number
 		 * alternative settings that this device interface has.
 		 */
-		u_int8_t numAltSettings(void);
+		uint8_t numAltSettings(void);
 
 		/**
 		 * \brief First AltSetting for the Interface
@@ -287,9 +287,9 @@ namespace USB {
 	private:
 		std::list<AltSetting *>::const_iterator iter;
 
-		void setNumAltSettings(u_int8_t);
+		void setNumAltSettings(uint8_t);
 		void setParent(Device *parent);
-		u_int8_t m_numAltSettings;
+		uint8_t m_numAltSettings;
 		Device    *m_parent;
 
 		/* index representing the interface, in this configuration */
@@ -330,7 +330,7 @@ namespace USB {
 		 * This is a simple accessor method that specifies the number
 		 * Interfaces that this device configuration has.
 		 */
-		u_int8_t numInterfaces(void);
+		uint8_t numInterfaces(void);
 
 		/**
 		 * \brief First Interface for the Configuration
@@ -386,14 +386,14 @@ namespace USB {
 		void setDescriptor(struct usb_config_descriptor);
 		/* we don't use a normal usb_config_descriptor */
 		/* because that would bring in the interface list */
-		u_int8_t  m_Length;
-		u_int8_t  m_DescriptorType;
-		u_int16_t m_TotalLength;
-		u_int8_t  m_NumInterfaces;
-		u_int8_t  m_ConfigurationValue;
-		u_int8_t  m_Configuration;
-		u_int8_t  m_Attributes;
-		u_int8_t  m_MaxPower; 
+		uint8_t  m_Length;
+		uint8_t  m_DescriptorType;
+		uint16_t m_TotalLength;
+		uint8_t  m_NumInterfaces;
+		uint8_t  m_ConfigurationValue;
+		uint8_t  m_Configuration;
+		uint8_t  m_Attributes;
+		uint8_t  m_MaxPower; 
 	};
 
 	/**
@@ -453,7 +453,7 @@ namespace USB {
 		 *
 		 * \see Vendor()
 		 */ 
-		u_int16_t idVendor(void);
+		uint16_t idVendor(void);
 
 		/** 
 		 * \brief The product ID number, as provided by the device.
@@ -464,7 +464,7 @@ namespace USB {
 		 *
 		 * \see Product()
 		 */ 
-		u_int16_t idProduct(void);
+		uint16_t idProduct(void);
 
 		/**
 		 * \brief The product's revision ID, as provided by the device.
@@ -475,7 +475,7 @@ namespace USB {
 		 * decimal version nominally has a major version in the high byte,
 		 * and a minor version in the low byte. 
 		 */
-		u_int16_t idRevision(void);
+		uint16_t idRevision(void);
 
 		/**
 		 * \brief The device's USB class, as provided by the device.
@@ -493,7 +493,7 @@ namespace USB {
 		 * protocol.
 		 *
 		 */
-		u_int8_t devClass(void);
+		uint8_t devClass(void);
 
 		/**
 		 * \brief The device's USB subclass, as provided by the device.
@@ -502,7 +502,7 @@ namespace USB {
 		 * These subclasses are defined by the USB Implementer's Forum,
 		 * and only have meaning in the context of a specified class. 
 		 */
-		u_int8_t devSubClass(void);
+		uint8_t devSubClass(void);
 
 		/**
 		 * \brief The device's USB protocol, as provided by the device.
@@ -512,7 +512,7 @@ namespace USB {
 		 * only have meaning in the context of a specified class and
 		 * subclass. 
 		 */
-		u_int8_t devProtocol(void);
+		uint8_t devProtocol(void);
 
     
 		/**
@@ -566,7 +566,7 @@ namespace USB {
 		 * This is a simple accessor method that specifies the number
 		 * configurations that this device has.
 		 */
-		u_int8_t numConfigurations(void);
+		uint8_t numConfigurations(void);
 
 		/**
 		 * \brief fetch an arbitrary string from the device
@@ -579,7 +579,7 @@ namespace USB {
 		 *
 		 * \return length of string, or 0 on error.
 		 */
-		int string(std::string &buf, int index, u_int16_t lang=0);
+		int string(std::string &buf, int index, uint16_t lang=0);
 
 		/**
 		 * \brief First Configuration for the Device
@@ -641,8 +641,8 @@ namespace USB {
 		 * \return number of bytes sent or received, or a negative number
 		 * in case of error.
 		 */
-		int controlTransfer(u_int8_t requestType, u_int8_t request,
-				    u_int16_t value, u_int16_t index, u_int16_t length,
+		int controlTransfer(uint8_t requestType, uint8_t request,
+				    uint16_t value, uint16_t index, uint16_t length,
 				    unsigned char *payload,
 				    int timeout = 100); 
 
@@ -750,25 +750,25 @@ namespace USB {
 		 * \param vendor the 16 bit vendor number for the device
 		 * \param product the 16 bit product number for the device
 		 */
-		DeviceID(u_int16_t vendor, u_int16_t product);
+		DeviceID(uint16_t vendor, uint16_t product);
 
 		/**
 		 * \brief vendor number for the device
 		 *
 		 * This method returns the 16 bit vendor number.
 		 */
-		u_int16_t vendor(void);
+		uint16_t vendor(void);
 
 		/**
 		 * \brief product number for the device
 		 *
 		 * This method returns the 16 bit product number.
 		 */
-		u_int16_t product(void);
+		uint16_t product(void);
 
 	private:
-		u_int16_t m_vendor;
-		u_int16_t m_product;
+		uint16_t m_vendor;
+		uint16_t m_product;
 	};
 
 	/**
@@ -809,7 +809,7 @@ namespace USB {
 		 * list of pointers to the devices that have a matching device
 		 * class code
 		 */
-		std::list<Device *> match(u_int8_t Class);
+		std::list<Device *> match(uint8_t Class);
 
 		/**
 		 * \brief find all devices with matching device IDs
