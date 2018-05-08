@@ -90,6 +90,7 @@ LIBS_INCLUDE_LIBLZO=y
 endif
 
 dir_y						+= libz
+dir_$(STORAGE_ENABLED)				+= librpc
 dir_$(LIBS_INCLUDE_LIBLZO)			+= liblzo
 dir_$(LIBS_INCLUDE_LIBICONV)			+= libiconv
 dir_$(LIBS_INCLUDE_LIBSSL)			+= libssl
