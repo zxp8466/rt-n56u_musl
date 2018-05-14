@@ -24,11 +24,11 @@ SBINDIR = $(PREFIX)/sbin
 DOCDIR = $(PREFIX)/share/doc
 MANDIR = $(PREFIX)/share/man
 
-OPTFLAGS = -Os -fomit-frame-pointer -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
-#WARNFLAGS = -Wall -pedantic -std=c99
+OPTFLAGS = -Os -fomit-frame-pointer -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE
+#WARNFLAGS = -Wall -pedantic -std=gnu99
 WARNFLAGS = -Wall
 DEBUGFLAGS =
-CFLAGS += $(OPTFLAGS) $(WARNFLAGS) $(DEBUGFLAGS) -ffunction-sections -fdata-sections
+CFLAGS += $(OPTFLAGS) $(WARNFLAGS) $(DEBUGFLAGS) -ffunction-sections -fdata-sections 
 LDFLAGS += -Wl,--gc-sections
 
 VPATH = src
