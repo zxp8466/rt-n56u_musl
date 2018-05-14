@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
-#include <linux/types.h>
+#include <sys/types.h>
 #include <endian.h>
 
 #if __BYTE_ORDER == __BIG_ENDIAN

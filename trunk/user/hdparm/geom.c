@@ -16,7 +16,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
-#include <linux/types.h>
+#include <sys/types.h>
 #include <linux/fs.h>
 
 #include "hdparm.h"

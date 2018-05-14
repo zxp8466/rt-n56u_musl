@@ -14,7 +14,9 @@
 #include <errno.h>
 #include <dirent.h>
 #include <sys/stat.h>
-#include <linux/types.h>
+#include <sys/types.h>
+#include <limits.h>
+
 
 #include "hdparm.h"
 
