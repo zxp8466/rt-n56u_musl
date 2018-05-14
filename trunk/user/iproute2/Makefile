@@ -1,4 +1,6 @@
-SRC_NAME=iproute2-3.4.0
+SRC_NAME=iproute2-3.5.1
+
+CFLAGS  += -Wall 
 
 THISDIR = $(shell pwd)
 
