@@ -4,7 +4,7 @@ SHDIR = $(ROOTDIR)/user/shared
 EXEC = mtd_write
 OBJS = mtd.o
 
-CFLAGS += -I$(SHDIR)/include
+CFLAGS += -I$(SHDIR)/include -D_GNU_SOURCE
 CFLAGS += -ffunction-sections -fdata-sections
 
 LDFLAGS += -static
