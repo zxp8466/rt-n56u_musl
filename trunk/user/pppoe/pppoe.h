@@ -43,10 +43,6 @@ extern int IsSetID;
 #error Unknown method for accessing raw Ethernet frames
 #endif
 
-#ifdef HAVE_SYS_CDEFS_H
-#include <sys/cdefs.h>
-#endif
-
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
@@ -90,24 +86,6 @@ void sessionDiscoveryPacket(struct PPPoEPacketStruct *packet);
 #define BPF_BUFFER_HAS_DATA 0
 #endif
 
-#ifdef USE_DLPI
-#include <sys/ethernet.h>
-#define ethhdr ether_header
-#define	ETH_DATA_LEN ETHERMTU
-#define	ETH_ALEN ETHERADDRL
-#define h_dest ether_dhost.ether_addr_octet
-#define h_source ether_shost.ether_addr_octet
-#define h_proto ether_type
-
-/* cloned from dltest.h */
-#define         MAXDLBUF        8192
-#define         MAXDLADDR       1024
-#define         MAXWAIT         15
-#define         OFFADDR(s, n)   (u_char*)((char*)(s) + (int)(n))
-#define         CASERET(s)      case s:  return ("s")
-
-#endif
-
 /* Define various integer types -- assumes a char is 8 bits */
 #if SIZEOF_UNSIGNED_SHORT == 2
 typedef unsigned short UINT16_t;
@@ -138,9 +116,6 @@ typedef unsigned long UINT32_t;
 
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
-#endif
-#ifndef HAVE_SYS_DLPI_H
-#include <netinet/if_ether.h>
 #endif
 #endif
 
