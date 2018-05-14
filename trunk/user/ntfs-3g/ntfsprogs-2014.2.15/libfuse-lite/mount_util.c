@@ -255,6 +255,10 @@ int fuse_mnt_check_fuseblk(void)
 
 #else /* __SOLARIS__ */
 
+#ifndef _PATH_MOUNTED
+#define _PATH_MOUNTED "/proc/mounts"
+#endif
+
 static int mtab_needs_update(const char *mnt)
 {
 	int res;

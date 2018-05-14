@@ -36,6 +36,10 @@
 
 #define FUSE_DEV_NEW "/dev/fuse"
 
+#ifndef _PATH_MOUNTED
+#define _PATH_MOUNTED "/proc/mounts"
+#endif
+
 #ifndef MS_DIRSYNC
 #define MS_DIRSYNC 128
 #endif
