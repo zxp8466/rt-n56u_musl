@@ -25,6 +25,7 @@
 #ifdef HAVE_UNISTD_H
 # include <unistd.h>
 #endif
+#include <sys/param.h>
 
 #ifdef WIN32
 #include <io.h>

@@ -45,6 +45,7 @@
 # include <netinet/in.h>  /* htons and friends */
 #endif
 #include <sys/stat.h>
+#include <sys/param.h>
 
 #include "daapd.h"
 #include "conf.h"
