@@ -53,8 +53,8 @@ static const struct option opts[] =
 
 struct icmpv6_names {
 	const char *name;
-	u_int8_t type;
-	u_int8_t code_min, code_max;
+	uint8_t type;
+	uint8_t code_min, code_max;
 };
 
 static const struct icmpv6_names icmpv6_codes[] = {
@@ -312,6 +312,10 @@ static void init(struct ebt_entry_match *match)
 
 	ipinfo->invflags = 0;
 	ipinfo->bitmask = 0;
+	memset(ipinfo->saddr.s6_addr, 0, sizeof(ipinfo->saddr.s6_addr));
+	memset(ipinfo->smsk.s6_addr, 0, sizeof(ipinfo->smsk.s6_addr));
+	memset(ipinfo->daddr.s6_addr, 0, sizeof(ipinfo->daddr.s6_addr));
+	memset(ipinfo->dmsk.s6_addr, 0, sizeof(ipinfo->dmsk.s6_addr));
 }
 
 #define OPT_SOURCE 0x01

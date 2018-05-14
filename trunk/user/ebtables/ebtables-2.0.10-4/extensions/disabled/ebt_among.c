@@ -12,14 +12,14 @@
 #include <getopt.h>
 #include <ctype.h>
 #include <unistd.h>
-#include "../include/ebtables_u.h"
-#include <netinet/ether.h>
-#include "../include/ethernetdb.h"
-#include <linux/if_ether.h>
-#include <linux/netfilter_bridge/ebt_among.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <netinet/ether.h>
+#include "../include/ebtables_u.h"
+#include "../include/ethernetdb.h"
+#include <linux/if_ether.h>
+#include <linux/netfilter_bridge/ebt_among.h>
 
 #define AMONG_DST '1'
 #define AMONG_SRC '2'
