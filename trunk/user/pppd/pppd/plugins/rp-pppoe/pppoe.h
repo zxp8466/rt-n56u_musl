@@ -43,10 +43,6 @@ extern int IsSetID;
 #error Unknown method for accessing raw Ethernet frames
 #endif
 
-#ifdef HAVE_SYS_CDEFS_H
-#include <sys/cdefs.h>
-#endif
-
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
@@ -132,19 +128,6 @@ typedef unsigned long UINT32_t;
 #endif
 
 #include <netinet/in.h>
-
-#ifdef HAVE_NETINET_IF_ETHER_H
-#include <sys/types.h>
-
-#ifdef HAVE_SYS_SOCKET_H
-#include <sys/socket.h>
-#endif
-#ifndef HAVE_SYS_DLPI_H
-#include <netinet/if_ether.h>
-#endif
-#endif
-
-
 
 /* Ethernet frame types according to RFC 2516 */
 #define ETH_PPPOE_DISCOVERY 0x8863

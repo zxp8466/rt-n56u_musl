@@ -42,6 +42,10 @@
 #ifndef _PPP_DEFS_H_
 #define _PPP_DEFS_H_
 
+#ifndef __P
+# define __P(x) x
+#endif
+
 /*
  * The basic PPP frame.
  */

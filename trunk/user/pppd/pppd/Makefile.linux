@@ -126,7 +126,7 @@ LIBS	+= -lcrypt
 #endif
 
 ifdef USE_LIBUTIL
-CFLAGS	+= -DHAVE_LOGWTMP=1
+#CFLAGS	+= -DHAVE_LOGWTMP=1
 LIBS	+= -lutil
 endif
 
