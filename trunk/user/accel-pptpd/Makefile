@@ -1,4 +1,4 @@
-SRC_NAME=pptpd-1.3.3
+SRC_NAME=pptpd-1.4.0
 
 PPPD_DIR=$(ROOTDIR)/user/pppd
 PPPD_VER=2.4.7
