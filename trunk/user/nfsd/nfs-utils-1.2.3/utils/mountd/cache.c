@@ -149,7 +149,6 @@ static void auth_unix_gid(FILE *f)
 	pw = getpwuid(uid);
 	if (!pw)
 		rv = -1;
-#ifndef __UCLIBC__
 	else {
 		rv = getgrouplist(pw->pw_name, pw->pw_gid, groups, &ngroups);
 		if (rv == -1 && ngroups >= 100) {
@@ -161,7 +160,6 @@ static void auth_unix_gid(FILE *f)
 						  groups, &ngroups);
 		}
 	}
-#endif /* __UCLIBC__ */
 	qword_printuint(f, uid);
 	qword_printuint(f, time(0)+30*60);
 	if (rv >= 0) {
@@ -902,7 +900,7 @@ static int cache_export_ent(char *domain, struct exportent *exp, char *path)
 		 */
 		struct stat stb;
 		size_t l = strlen(exp->e_path);
-		__dev_t dev;
+		dev_t dev;
 
 		if (strlen(path) <= l || path[l] != '/' ||
 		    strncmp(exp->e_path, path, l) != 0)

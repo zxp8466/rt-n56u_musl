@@ -20,11 +20,12 @@
 #ifndef NFS_UTILS_SOCKADDR_H
 #define NFS_UTILS_SOCKADDR_H
 
-/* uClibc doesn't have/need libio.h */
-#ifndef __UCLIBC__
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#ifdef HAVE_LIBIO_H
 #include <libio.h> 
-#else
-#define AI_NUMERICSERV 0x0010
 #endif
 #include <stdbool.h>
 #include <sys/socket.h>

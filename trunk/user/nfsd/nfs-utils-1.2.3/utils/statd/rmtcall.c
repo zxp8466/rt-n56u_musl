@@ -92,8 +92,10 @@ statd_get_socket(void)
 					__func__);
 			break;
 		}
+#if defined(__GLIBC__) || defined(__UCLIBC__) || defined(__MUSL_LIBC__) 
 		se = getservbyport(sin.sin_port, "udp");
 		if (se == NULL)
+#endif
 			break;
 		/* rather not use that port, try again */
 	}

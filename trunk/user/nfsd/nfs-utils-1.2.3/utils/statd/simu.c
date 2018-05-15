@@ -8,6 +8,7 @@
 #include <config.h>
 #endif
 
+#include <stddef.h>
 #include <netdb.h>
 #include <arpa/inet.h>
 

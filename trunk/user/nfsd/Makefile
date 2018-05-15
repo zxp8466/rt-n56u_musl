@@ -1,8 +1,8 @@
 SRC_NAME1="nfs-utils-1.2.3"
 SRC_NAME2="portmap_6.0"
 
-CFLAGS += -ffunction-sections -fdata-sections
-LDFLAGS += -Wl,--gc-sections
+CFLAGS += -ffunction-sections -fdata-sections -D__MUSL_LIBC__ -D_GNU_SOURCE
+LDFLAGS += -Wl,-rpath-link=$(STAGEDIR)/lib -lrpc -L$(STAGEDIR)/lib
 
 PORTMAP_ENABLED=
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_NFSD),y)
@@ -32,10 +32,11 @@ configure:
 	knfsd_cv_bsd_signals=no \
 	./configure \
 		--prefix=/ \
+		--enable-static \
+		--enable-shared \
 		--disable-ipv6 \
 		--disable-tirpc \
 		--disable-mount \
-		--disable-libmount \
 		--disable-nfsv4 \
 		--disable-nfsv41 \
 		--disable-uuid \

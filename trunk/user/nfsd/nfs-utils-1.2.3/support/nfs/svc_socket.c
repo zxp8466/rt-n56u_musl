@@ -66,7 +66,7 @@ svc_socket (u_long number, int type, int protocol, int reuse)
 
   memset (&addr, 0, sizeof (addr));
   addr.sin_family = AF_INET;
-#ifndef __UCLIBC__ /* neither getrpcbynumber() nor getrpcbynumber_r() is SuSv3 */
+#if !defined __UCLIBC__ && !defined __MUSL_LIBC__ /* neither getrpcbynumber() nor getrpcbynumber_r() is SuSv3 */
   ret = getrpcbynumber_r (number, &rpcbuf, rpcdata, sizeof rpcdata,
 			  &rpcp);
 #else
