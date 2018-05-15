@@ -36,7 +36,7 @@
  * http://oss.sgi.com/projects/GenInfo/SGIGPLNoticeExplan/
  */
 
-#include <linux/types.h>
+#include <sys/types.h>
 
 #define XQM_CMD(cmd)	( ('X'<<8)+(cmd) )
 #define IS_XQM_CMD(cmd)	( ((int)(cmd)>>8) == 'X' )

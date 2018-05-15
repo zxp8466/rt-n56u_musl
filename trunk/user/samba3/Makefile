@@ -1,6 +1,6 @@
 SRC_NAME=source
 
-SMBCFLAGS = -Wall -ffunction-sections -fdata-sections
+SMBCFLAGS = -Wall -ffunction-sections -fdata-sections  -D_GNU_SOURCE
 SMBLDFLAGS = -Wl,--gc-sections
 
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_SMBD_SYSLOG),y)

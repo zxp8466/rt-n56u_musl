@@ -119,19 +119,26 @@ void delete_user_from_smbpasswd(char *user)
 			if(p && (p - t == strlen(user)) && (strncmp(t, user, strlen(user))) == 0)
 			{
 				fpos_t r_pos, w_pos;
-				char t2[256];
+				int len = strlen(t);
+
 				fgetpos(fp, &r_pos);
-				w_pos = r_pos;
-				w_pos.__pos -= strlen(t);
-				while(fgets(t2, 256, fp))
-				{
+				fseek(fp, -len, SEEK_CUR);
+				fgetpos(fp, &w_pos);
+				fsetpos(fp, &r_pos);
+
+				while (fgets(t, 255, fp)) {
+					int cur_len = strlen(t);
+	
 					fsetpos(fp, &w_pos);
-					fputs(t2, fp);
-					r_pos.__pos += strlen(t2);
-					w_pos.__pos += strlen(t2);
+					fputs(t, fp);
+					fgetpos(fp, &w_pos);
+
 					fsetpos(fp, &r_pos);
+					fseek(fp, cur_len, SEEK_CUR);
+					fgetpos(fp, &r_pos);
 				}
-				ftruncate(fileno(fp), w_pos.__pos);
+				fsetpos(fp, &w_pos);
+				ftruncate(fileno(fp), ftello(fp));
 				break;
 			}
 		}
