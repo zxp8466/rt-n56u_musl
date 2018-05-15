@@ -32,6 +32,7 @@
 #include <unistd.h>
 #include <time.h>
 #include <signal.h>
+#include <limits.h>
 #ifndef LINUX
 # include <sys/socket.h>
 #endif
