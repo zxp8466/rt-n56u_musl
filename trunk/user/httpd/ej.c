@@ -20,6 +20,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 #include <assert.h>
 
 #include <httpd.h>

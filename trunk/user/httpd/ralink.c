@@ -37,7 +37,7 @@
 #include <arpa/inet.h>
 #include <net/ethernet.h>
 #include <net/if.h>
-#include <linux/ethtool.h>
+//#include <linux/ethtool.h>
 #include <linux/sockios.h>
 #include <net/if_arp.h>
 

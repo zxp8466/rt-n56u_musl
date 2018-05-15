@@ -102,7 +102,7 @@ size_t strlcpy(char *d, const char *s, size_t bufsize)
 	return ret;
 }
 
-void char_to_ascii(char *output, char *input)
+void char_to_ascii(char *output, uint8_t *input)
 {
 	int i;
 	char tmp[10];

@@ -8,7 +8,7 @@ SHDIR = $(ROOTDIR)/user/shared
 include $(SHDIR)/boards.mk
 include $(SHDIR)/cflags.mk
 
-CFLAGS += -Wall -I. -I$(SHDIR) -I$(SHDIR)/include
+CFLAGS += -Wall -I. -I$(SHDIR) -I$(SHDIR)/include -D_GNU_SOURCE
 CFLAGS += -I$(USERDIR)/wireless_tools
 
 LDFLAGS += -L. -lm

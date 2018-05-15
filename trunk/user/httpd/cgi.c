@@ -51,7 +51,7 @@ get_cgi(char *name)
 {
 	ENTRY e, *ep;
 
-	if (!htab.table)
+	if (!htab.__tab)
 		return NULL;
 
 	e.key = name;
@@ -65,7 +65,7 @@ set_cgi(char *name, char *value)
 {
 	ENTRY e, *ep;
 
-	if (!htab.table)
+	if (!htab.__tab)
 		return;
 
 	e.key = name;
