@@ -19,6 +19,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <sys/ipc.h>
+#include <time.h>
 #include <netinet/in.h>
 
 #include "rc.h"

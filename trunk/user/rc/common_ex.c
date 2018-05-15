@@ -22,6 +22,7 @@
 #include <signal.h>
 #include <string.h>
 #include <sys/time.h>
+#include <sys/ipc.h>
 #include <sys/sysinfo.h>
 #include <sys/stat.h>
 #include <sys/mount.h>
@@ -422,7 +423,7 @@ restart_all_sysctl(void)
 }
 
 void
-char_to_ascii(char *output, char *input)
+char_to_ascii(char *output, uint8_t *input)
 {
 	int i;
 	char tmp[10];

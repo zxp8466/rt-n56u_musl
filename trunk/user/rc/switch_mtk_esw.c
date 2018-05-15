@@ -23,6 +23,8 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
+#include <sys/ipc.h>
+#include <sys/sysmacros.h>
 #include <ctype.h>
 
 #include "rc.h"
