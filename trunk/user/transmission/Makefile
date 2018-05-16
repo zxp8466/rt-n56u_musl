@@ -31,6 +31,7 @@ configure:
 		--without-gtk \
 		--with-inotify \
 		--with-zlib=$(STAGEDIR) \
+		CFLAGS=-liconv \
 		OPENSSL_CFLAGS="-I$(STAGEDIR)/include" \
 		OPENSSL_LIBS="-L$(STAGEDIR)/lib -lssl -lcrypto" \
 		LIBCURL_CFLAGS="-I$(STAGEDIR)/include" \
