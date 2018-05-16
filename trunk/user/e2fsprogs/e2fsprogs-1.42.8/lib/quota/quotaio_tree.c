@@ -251,7 +251,7 @@ static int do_insert_tree(struct quota_handle *h, struct dquot *dquot,
 {
 	dqbuf_t buf;
 	int newson = 0, newact = 0;
-	u_int32_t *ref;
+	uint32_t *ref;
 	uint newblk;
 	int ret = 0;
 
@@ -271,7 +271,7 @@ static int do_insert_tree(struct quota_handle *h, struct dquot *dquot,
 		read_blk(h, *treeblk, buf);
 	}
 
-	ref = (u_int32_t *) buf;
+	ref = (uint32_t *) buf;
 	newblk = ext2fs_le32_to_cpu(ref[get_index(dquot->dq_id, depth)]);
 	if (!newblk)
 		newson = 1;
@@ -392,7 +392,7 @@ static void remove_tree(struct quota_handle *h, struct dquot *dquot,
 {
 	dqbuf_t buf = getdqbuf();
 	uint newblk;
-	u_int32_t *ref = (u_int32_t *) buf;
+	uint32_t *ref = (uint32_t *) buf;
 
 	if (!buf)
 		return;
@@ -468,7 +468,7 @@ static ext2_loff_t find_tree_dqentry(struct quota_handle *h,
 {
 	dqbuf_t buf = getdqbuf();
 	ext2_loff_t ret = 0;
-	u_int32_t *ref = (u_int32_t *) buf;
+	uint32_t *ref = (uint32_t *) buf;
 
 	if (!buf)
 		return -ENOMEM;
@@ -591,7 +591,7 @@ static int report_tree(struct dquot *dquot, uint blk, int depth, char *bitmap,
 {
 	int entries = 0, i;
 	dqbuf_t buf = getdqbuf();
-	u_int32_t *ref = (u_int32_t *) buf;
+	uint32_t *ref = (uint32_t *) buf;
 
 	if (!buf)
 		return 0;

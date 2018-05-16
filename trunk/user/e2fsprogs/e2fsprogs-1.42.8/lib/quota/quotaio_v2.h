@@ -16,8 +16,8 @@
 #define V2_VERSION 1
 
 struct v2_disk_dqheader {
-	u_int32_t dqh_magic;	/* Magic number identifying file */
-	u_int32_t dqh_version;	/* File version */
+	uint32_t dqh_magic;	/* Magic number identifying file */
+	uint32_t dqh_version;	/* File version */
 } __attribute__ ((packed));
 
 /* Flags for version specific files */
@@ -25,30 +25,30 @@ struct v2_disk_dqheader {
 
 /* Header with type and version specific information */
 struct v2_disk_dqinfo {
-	u_int32_t dqi_bgrace;	/* Time before block soft limit becomes
+	uint32_t dqi_bgrace;	/* Time before block soft limit becomes
 				 * hard limit */
-	u_int32_t dqi_igrace;	/* Time before inode soft limit becomes
+	uint32_t dqi_igrace;	/* Time before inode soft limit becomes
 				 * hard limit */
-	u_int32_t dqi_flags;	/* Flags for quotafile (DQF_*) */
-	u_int32_t dqi_blocks;	/* Number of blocks in file */
-	u_int32_t dqi_free_blk;	/* Number of first free block in the list */
-	u_int32_t dqi_free_entry;	/* Number of block with at least one
+	uint32_t dqi_flags;	/* Flags for quotafile (DQF_*) */
+	uint32_t dqi_blocks;	/* Number of blocks in file */
+	uint32_t dqi_free_blk;	/* Number of first free block in the list */
+	uint32_t dqi_free_entry;	/* Number of block with at least one
 					 * free entry */
 } __attribute__ ((packed));
 
 struct v2r1_disk_dqblk {
-	u_int32_t dqb_id;	/* id this quota applies to */
-	u_int32_t dqb_pad;
-	u_int64_t dqb_ihardlimit;	/* absolute limit on allocated inodes */
-	u_int64_t dqb_isoftlimit;	/* preferred inode limit */
-	u_int64_t dqb_curinodes;	/* current # allocated inodes */
-	u_int64_t dqb_bhardlimit;	/* absolute limit on disk space
+	uint32_t dqb_id;	/* id this quota applies to */
+	uint32_t dqb_pad;
+	uint64_t dqb_ihardlimit;	/* absolute limit on allocated inodes */
+	uint64_t dqb_isoftlimit;	/* preferred inode limit */
+	uint64_t dqb_curinodes;	/* current # allocated inodes */
+	uint64_t dqb_bhardlimit;	/* absolute limit on disk space
 					 * (in QUOTABLOCK_SIZE) */
-	u_int64_t dqb_bsoftlimit;	/* preferred limit on disk space
+	uint64_t dqb_bsoftlimit;	/* preferred limit on disk space
 					 * (in QUOTABLOCK_SIZE) */
-	u_int64_t dqb_curspace;	/* current space occupied (in bytes) */
-	u_int64_t dqb_btime;	/* time limit for excessive disk use */
-	u_int64_t dqb_itime;	/* time limit for excessive inode use */
+	uint64_t dqb_curspace;	/* current space occupied (in bytes) */
+	uint64_t dqb_btime;	/* time limit for excessive disk use */
+	uint64_t dqb_itime;	/* time limit for excessive inode use */
 } __attribute__ ((packed));
 
 #endif
