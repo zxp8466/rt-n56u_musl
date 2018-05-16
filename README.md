@@ -1,16 +1,12 @@
 # README #
 
-Welcome to the rt-n56u_musl project
+Welcome to the rt-n56u_musl project  
 
-This project was forked from Andy Padavan´s rt-n56u project, upgrade gcc compiler and replace standard C library.
+This project was forked from Andy Padavan´s rt-n56u project, upgrade gcc compiler and replace standard C library.  
 
-[Current Status] 
+Tested devices: Newifi-D1(MT7621)  
 
-Tool-Chain: Ready
-Kernel: Ready
-System: Fail
-
-Reference:
+Reference:  
 
 Padavan:
 https://bitbucket.org/padavan/rt-n56u
