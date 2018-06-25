@@ -8,9 +8,7 @@ Tested devices: Newifi-D1(MT7621)
 
 Reference:  
 
-Padavan:
-https://bitbucket.org/padavan/rt-n56u
-Musl-cross:
-https://bitbucket.org/GregorR/musl-cross
-LEDE Project:
-https://openwrt.org
+Padavan: https://bitbucket.org/padavan/rt-n56u  
+Musl-cross: https://bitbucket.org/GregorR/musl-cross  
+LEDE Project: https://openwrt.org  
+AriaNg:  https://github.com/mayswind/AriaNg   
